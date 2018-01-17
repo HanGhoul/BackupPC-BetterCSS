@@ -32,7 +32,7 @@ body {
 	background:var(--clr-bg-body);
 	color:var(--clr-text);
 	font-family:"Open Sans";
-	font-size:13px;
+	font-size:small;
 	line-height:1.5;
 	margin:0px;
 }
@@ -69,13 +69,13 @@ td.border {
 	background:var(--clr-bg-table-head);
 	border:1px solid var(--clr-border);
 	font-family:Open Sans Condensed;
-	font-size:15px;
+	font-size:11pt;
 	font-weight:700;
 	padding:6px 8px;
 }
 
 table.sortable a.sortheader {
-	font-size:15px;
+	font-size:11pt;
 }
 
 .tableStnd,.sortable,.fviewborder {
@@ -134,7 +134,7 @@ a.Navbar {
 	padding:10px 0 0px 10px;
 	color:var(--clr-accent);
 	font-family:Open Sans Condensed;
-	font-size:34px;
+	font-size:xx-large;
 	font-weight:300;
 	text-transform:uppercase;
 	background:var(--clr-bg-body);
@@ -144,7 +144,7 @@ a.Navbar {
 h2,.h2,.editHeader {
 	padding:16px 0px 0px 10px;
 	font-family:Open Sans Condensed;
-	font-size:24px;
+	font-size:x-large;
 	font-weight:300;
 	text-transform:uppercase;
 	background:var(--clr-bg-body);
@@ -169,7 +169,7 @@ h2,.h2,.editHeader {
 	border-bottom:1px solid var(--clr-border);
 	color:var(--clr-text);
 	display:block;
-	font-size:26px;
+	font-size:x-large;
 	font-weight:300;
 	margin-top:0px;
 	padding:10px 0 10px 10px;
@@ -208,9 +208,9 @@ h2,.h2,.editHeader {
 
 .editSaveButton {
 	float:right;
-	font-size:20px;
+	font-size:large;
 	margin-bottom:0px;
-	margin-top:-51px;
+	margin-top:-47px;
 }
 
 .editError {
@@ -414,6 +414,14 @@ div[class="NavMenu"] + div[class="NavMenu"] {
 	content:"\f187";
 }
 
+.NavMenu a[href^="/index.cgi?action=view&type=XferLOGbad&host="]:before {
+	content:"\f06a";
+}
+
+.NavMenu a[href^="/index.cgi?action=view&type=XferErrbad&host="]:before {
+	content:"\f12a";
+}
+
 .NavMenu a[href^="/index.cgi?action=editConfig&host="]:before {
 	content:"\f1de";
 }
@@ -594,18 +602,18 @@ p > table,p > .tableStnd {
 }
 
 input[value="Stop/Dequeue Backup"],input[value="Start Full Backup"],input[value="Start Incr Backup"],input[value="No"],
-input[value="Backup Stoppen/Aussetzen"],input[value="Starte vollständiges Backup"],input[value="Starte inkrementelles Backup"],input[value="Nein"] {
+input[value="Backup Stoppen/Aussetzen"],input[value="Starte vollstÃ¤ndiges Backup"],input[value="Starte inkrementelles Backup"],input[value="Nein"] {
 	display:block;
 	margin-top:10px;
 }
 
 input[value="Stop/Dequeue Backup"],input[value="Delete"],input[value="No"],
-input[value="Backup Stoppen/Aussetzen"],input[value="Löschen"],input[value="Nein"] {
+input[value="Backup Stoppen/Aussetzen"],input[value="LÃ¶schen"],input[value="Nein"] {
 	background:var(--clr-warn);
 }
 
 input[value="Stop/Dequeue Backup"]:hover,input[value="Delete"]:hover,input[value="No"]:hover,
-input[value="Backup Stoppen/Aussetzen"]:hover,input[value="Löschen"]:hover,input[value="Nein"]:hover {
+input[value="Backup Stoppen/Aussetzen"]:hover,input[value="LÃ¶schen"]:hover,input[value="Nein"]:hover {
 	background:var(--clr-warn-hover);
 }
 
