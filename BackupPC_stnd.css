@@ -2,12 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Asap+Condensed:400');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
-@import url('https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css');
-
-/* If your vertical screen resolution is less than 1080px set this to 'absolute' to scroll the menu with the page */
-.NavMenu {
-	position:fixed;
-}
+@import url('https://use.fontawesome.com/releases/v5.0.13/css/all.css');
 
 :root {
 	--clr-bg-body:#f3f3f4;
@@ -26,6 +21,11 @@
 	--clr-info:#f8ac59;
 	--clr-a:#337ab7;
 	--clr-a-nav:#a7b1c2;
+}
+
+/* If your vertical screen resolution is less than 1080px set this to 'absolute' to scroll the menu with the page */
+.NavMenu {
+	position:fixed;
 }
 
 body {
@@ -292,7 +292,7 @@ br + div[class="NavMenu"] {
 	top:auto;
 	bottom:205px;*/
 	z-index:999;
-	margin-top:563px;
+	margin-top:521px;
 }
 
 div[class="NavMenu"] + div[class="NavMenu"] {
@@ -300,7 +300,7 @@ div[class="NavMenu"] + div[class="NavMenu"] {
 	top:auto;
 	bottom:0px;*/
 	z-index:999;
-	margin-top:601px;
+	margin-top:559px;
 }
 
 @-moz-document url-prefix() {
@@ -343,86 +343,80 @@ div[class="NavMenu"] + div[class="NavMenu"] {
 .NavMenu a:before {
 	display: inline-block;
 	width:1em;
-	font-family:FontAwesome;
+	font-family: "Font Awesome 5 Free";
 	font-size:14px;
-	font-weight:400;
+	font-weight:900;
 	text-align:center;
 	padding-right:20px;
 }
 
 /* SERVER MENU ICONS */
-.NavMenu a[href="/index.cgi"]:before {
+.NavMenu a[href="/backuppc/index.cgi"]:before {
 	content:"\f21e";
 }
 
-.NavMenu a[href="/index.cgi?action=summary"]:before {
+.NavMenu a[href="/backuppc/index.cgi?action=summary"]:before {
 	content:"\f233";
 }
 
-.NavMenu a[href="/index.cgi?action=editConfig"]:before {
+.NavMenu a[href="/backuppc/index.cgi?action=editConfig"]:before {
 	content:"\f1de";
 }
 
-.NavMenu a[href="/index.cgi?action=editConfig&newMenu=hosts"]:before {
+.NavMenu a[href="/backuppc/index.cgi?action=editConfig&newMenu=hosts"]:before {
 	content:"\f0ad";
 }
 
-.NavMenu a[href="/index.cgi?action=adminOpts"]:before {
+.NavMenu a[href="/backuppc/index.cgi?action=adminOpts"]:before {
 	content:"\f023";
 }
-/*.NavMenu a[href="/index.cgi?action=adminOpts"] {
-	display:none;
-}*/
 
-.NavMenu a[href="/index.cgi?action=view&type=LOG"]:before {
+.NavMenu a[href="/backuppc/index.cgi?action=view&type=LOG"]:before {
 	content:"\f15c";
 }
 
-.NavMenu a[href="/index.cgi?action=LOGlist"]:before {
+.NavMenu a[href="/backuppc/index.cgi?action=LOGlist"]:before {
 	content:"\f187";
 }
 
-.NavMenu a[href="/index.cgi?action=emailSummary"]:before {
+.NavMenu a[href="/backuppc/index.cgi?action=emailSummary"]:before {
 	content:"\f0e0";
 }
 
-.NavMenu a[href="/index.cgi?action=queue"]:before {
+.NavMenu a[href="/backuppc/index.cgi?action=queue"]:before {
 	content:"\f021";
 }
 
-.NavMenu a[href="/index.cgi?action=view&type=docs"]:before {
+.NavMenu a[href="/backuppc/index.cgi?action=view&type=docs"]:before {
 	content:"\f02d";
 }
-/*.NavMenu a[href="/index.cgi?action=view&type=docs"] {
-	display:none;
-}*/
 
 /* HOST MENU ICONS */
-.NavMenu a[href^="/index.cgi?host="]:before {
+.NavMenu a[href^="/backuppc/index.cgi?host="]:before {
 	content:"\f109";
 }
 
-.NavMenu a[href^="/index.cgi?action=browse&host="]:before {
+.NavMenu a[href^="/backuppc/index.cgi?action=browse&host="]:before {
 	content:"\f0ca";
 }
 
-.NavMenu a[href^="/index.cgi?action=view&type=LOG&host="]:before {
+.NavMenu a[href^="/backuppc/index.cgi?action=view&type=LOG&host="]:before {
 	content:"\f15c";
 }
 
-.NavMenu a[href^="/index.cgi?action=LOGlist&host="]:before {
+.NavMenu a[href^="/backuppc/index.cgi?action=LOGlist&host="]:before {
 	content:"\f187";
 }
 
-.NavMenu a[href^="/index.cgi?action=view&type=XferLOGbad&host="]:before {
+.NavMenu a[href^="/backuppc/index.cgi?action=view&type=XferLOGbad&host="]:before {
 	content:"\f06a";
 }
 
-.NavMenu a[href^="/index.cgi?action=view&type=XferErrbad&host="]:before {
+.NavMenu a[href^="/backuppc/index.cgi?action=view&type=XferErrbad&host="]:before {
 	content:"\f12a";
 }
 
-.NavMenu a[href^="/index.cgi?action=editConfig&host="]:before {
+.NavMenu a[href^="/backuppc/index.cgi?action=editConfig&host="]:before {
 	content:"\f1de";
 }
 /* - - - */
@@ -562,6 +556,7 @@ input[type="submit"],input[type="button"] {
 input[type="submit"]:hover,input[type="button"]:hover {
 	background:var(--clr-accent-hover);
 	border:none;
+	cursor:pointer;
 }
 
 input[type="submit"]:focus,input[type="button"]:focus {
@@ -602,18 +597,18 @@ p > table,p > .tableStnd {
 }
 
 input[value="Stop/Dequeue Backup"],input[value="Start Full Backup"],input[value="Start Incr Backup"],input[value="No"],
-input[value="Backup Stoppen/Aussetzen"],input[value="Starte vollstÃ¤ndiges Backup"],input[value="Starte inkrementelles Backup"],input[value="Nein"] {
+input[value="Backup Stoppen/Aussetzen"],input[value="Starte vollständiges Backup"],input[value="Starte inkrementelles Backup"],input[value="Nein"] {
 	display:block;
 	margin-top:10px;
 }
 
 input[value="Stop/Dequeue Backup"],input[value="Delete"],input[value="No"],
-input[value="Backup Stoppen/Aussetzen"],input[value="LÃ¶schen"],input[value="Nein"] {
+input[value="Backup Stoppen/Aussetzen"],input[value="Löschen"],input[value="Nein"] {
 	background:var(--clr-warn);
 }
 
 input[value="Stop/Dequeue Backup"]:hover,input[value="Delete"]:hover,input[value="No"]:hover,
-input[value="Backup Stoppen/Aussetzen"]:hover,input[value="LÃ¶schen"]:hover,input[value="Nein"]:hover {
+input[value="Backup Stoppen/Aussetzen"]:hover,input[value="Löschen"]:hover,input[value="Nein"]:hover {
 	background:var(--clr-warn-hover);
 }
 
