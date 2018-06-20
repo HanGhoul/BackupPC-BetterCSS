@@ -1,5 +1,5 @@
 # BackupPC-v3-BetterCSS
-A more modern CSS for BackupPC v3, heavily inspired by INSPINIA Bootstrap Theme. Works best with BackupPC set to English or German. If you use another language be sure to edit the input[value=] selectors to your language.
+A more modern CSS for BackupPC v3, heavily inspired by INSPINIA Bootstrap Theme. Works best with BackupPC set to English or German. If you use another language be sure to edit the `input[value=]` selectors to your language.
 
 # How to use
 Place the CSS file in `/usr/share/backuppc/image/` and change the CSS path either in the config file itself (`/etc/backuppc/config.pl` -> `$Conf{CgiCSSFile}`) or in the BackupPC GUI (Edit Config -> CGI -> CgiCSSFile)
