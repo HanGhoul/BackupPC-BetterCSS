@@ -1,8 +1,13 @@
 # BackupPC-v3-BetterCSS
 A more modern CSS for BackupPC v3, heavily inspired by INSPINIA Bootstrap Theme. Works best with BackupPC set to English or German. If you use another language be sure to edit the input[value=] selectors to your language.
 
-Tested with Chrome 60 & Firefox 55
+# How to use
+Place the CSS file in "/usr/share/backuppc/image/" and change the CSS path either in the config file itself (/etc/backuppc/config.pl -> $Conf{CgiCSSFile}) or in the BackupPC GUI (Edit Config -> CGI -> CgiCSSFile)
 
-I learned CSS in early 2000s when I was still a kid and only used it rarely since, so don't expect nice/clean CSS code. In addition, BackupPC v3's HTML/CSS is very topsy-turvy itself so it's hard to get a consistent look all around.
+If you don't see the FontAwesome menu icons you are probably using BackupPC in a different subfolder than the default "/backuppc/". Replace all "/backuppc/index.cgi" with "/yoursubfolder/index.cgi" or just "/index.cgi" if you're not using a subfolder.
+
+If the host menu is out of place you can change the "margin-top" values in:
+* br + div[class="NavMenu"] {
+* div[class="NavMenu"] + div[class="NavMenu"] {
 
 ![Preview](preview.png "Preview")
