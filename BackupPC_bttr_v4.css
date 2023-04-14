@@ -337,7 +337,7 @@ h2.NavTitle { font-size: medium; }
 .NavMenu a:before {
 	display: inline-block;
 	width:1em;
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	font-size:14px;
 	font-weight:900;
 	text-align:center;
