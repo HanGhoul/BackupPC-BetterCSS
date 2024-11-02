@@ -13,7 +13,6 @@
 
     --font-size: 12px; /* Used to calculate fake h1 line-height in 'Documentations' */
     --font-default: var(--font-size)/1.5 "Verdana Pro", "Verdana", sans-serif;
-
     --font-mono: 12px/1.2 "Consolas", monospace;
 
     --color-heading-background: #9a97d0;
@@ -29,9 +28,10 @@
     --color-table-head: var(--color-secondary-background);
     --color-table-head-text: White;
     --color-table-head-link: #F7BA0B;
-    --color-table-progress: #00387b;
-    --color-table-good: #007243;
-    --color-table-warn: #C1121C;
+
+    --color-progress: #00387b;
+    --color-good: #007243;
+    --color-warn: #C1121C;
 
     --color-border-table: var(--color-secondary-background);
     
@@ -41,14 +41,17 @@
     --border-primary-sink: rgba(0, 0, 0, 0.2);
     --border-secondary-rise: rgba(255, 255, 255, 0.6);
     --border-secondary-sink: rgba(0, 0, 0, 0.3);
+
+    --form-checkbox-size: calc(var(--font-size) * 1.333);
 }
 
 /***********/
 /* General */
 /***********/
 body {
+    /* Uncomment next line for vertically stretched navigation */
+    /* height: calc(100vh - var(--body-margin-v) * 2); */
     display: flex;
-    height: calc(100vh - var(--body-margin-v) * 2);
     margin: var(--body-margin);
     text-shadow: black 1px 1px;
     background: var(--color-primary-background);
@@ -137,6 +140,10 @@ h1:not(:first-child) {
     margin: var(--body-padding) calc(var(--body-padding) * -1) var(--body-padding) calc((var(--body-padding) * -1) - var(--border-width-ui));
 }
 /* h2 */
+h2.NavTitle {
+    padding-top: var(--body-padding-fraction-l);
+    margin-bottom: unset;
+}
 #Content h2 {
     background: var(--color-heading-background);
     margin-top : calc(var(--body-padding) * 1.5);
@@ -209,6 +216,9 @@ h2.NavTitle {
     padding: 0px var(--body-padding-fraction-l) var(--body-padding-fraction-s) var(--body-padding-fraction-l);
     border-width: 0px var(--border-width-ui) var(--border-width-ui) var(--border-width-ui);
 }
+.NavMenu select {
+    width: 100%;
+}
 
 /***********/
 /* Content */
@@ -218,14 +228,27 @@ table {
 }
 td {
     border: var(--border-width-table) solid var(--color-border-table);
+    padding: var(--body-padding-fraction-s);
 }
-tr.tableheader, td.editheader {
+table[bgcolor="#ffffff"], td[bgcolor="#ffffff"] {
+    background: transparent;
+}
+
+tr.tableheader, td.editheader, tr.fviewheader {
     background: var(--color-table-head);
     color: var(--color-table-head-text);
     font-weight: bold;
 }
-table[bgcolor="#ffffff"], td[bgcolor="#ffffff"] {
-    background: transparent;
+
+/* Table status colors */
+tr[bgcolor="#ccffcc"] {
+    background: var(--color-good);
+}
+tr[bgcolor="#ff9900"] {
+    background: var(--color-warn);
+}
+tr[bgcolor="#66cc99"] {
+    background: var(--color-progress);
 }
 
 /* Content browser */
@@ -238,18 +261,82 @@ td[width="30%"] td {
 td[width="30%"] td {
     font-family: monospace;
 }
+td.fview, td.fviewon, td.fviewoff, td.fviewbold {
+    padding: unset;
+}
+td.fviewon, td.fviewon a {
+    font-weight: bold;
+    color: var(--color-secondary-text) !important;
+}
 
-/***********************/
-/* Table status colors */
-/***********************/
-tr[bgcolor="#ccffcc"] {
-    background: var(--color-table-good);
+/* Config editor */
+table.editSubTable td {
+    border: unset;
 }
-tr[bgcolor="#ff9900"] {
-    background: var(--color-table-warn);
+table.editSubTable table {
+    border: var(--border-width-table) solid var(--color-border-table);
 }
-tr[bgcolor="#66cc99"] {
-    background: var(--color-table-progress);
+td.editTabSel  {
+    background-color: var(--color-secondary-background);
+}
+td.editTabSel a:hover, td.editTabNoSel a:hover {
+    color: var(--color-heading-text) !important;
+}
+
+/********/
+/* Form */
+/********/
+form {
+    margin: var(--body-padding-fraction-s) 0px;
+}
+input, textarea, select {
+    color: var(--color-secondary-text);
+    border-style: solid;
+    background-color: var(--border-primary-sink);
+    border-width: var(--border-width-ui);
+    border-color: var(--border-secondary-sink) var(--border-primary-rise) var(--border-primary-rise) var(--border-secondary-sink);
+}
+input, textarea {
+    padding: calc(var(--body-padding-fraction-s) / 2) var(--body-padding-fraction-s);}
+select {
+    padding: var(--body-padding-fraction-s);
+}
+/* Buttons */
+input[type="button"], input[type="submit"] {
+    color: var(--color-heading-text);
+    background-color: var(--color-secondary-background);
+    border-width: var(--border-width-ui);
+    border-color: var(--border-primary-rise) var(--border-primary-sink) var(--border-primary-sink) var(--border-primary-rise);
+}
+input[type="button"]:hover, input[type="submit"]:hover {
+    color: var(--color-heading-text);
+    background-color: var(--color-heading-background);
+    border-color: var(--border-secondary-rise) var(--border-secondary-sink) var(--border-secondary-sink) var(--border-secondary-rise);
+}
+input[type="button"]:active, input[type="submit"]:active {
+    color: var(--color-heading-background);
+    background-color: var(--color-secondary-background);
+    border-color: var(--border-secondary-sink) var(--border-primary-rise) var(--border-primary-rise) var(--border-secondary-sink);
+}
+/* Active changes save button */
+input[style="color: rgb(255, 0, 0);"] {
+    color: var(--color-heading-text) !important;
+    background-color: var(--color-warn);
+    border-width: var(--border-width-ui);
+    border-color: var(--border-secondary-rise) var(--border-secondary-sink) var(--border-secondary-sink) var(--border-secondary-rise);
+}
+/* Checkboxes */
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    display: unset;
+    padding-left: var(--form-checkbox-size);
+}
+input[type="checkbox"]:checked {
+    background-color: var(--color-secondary-background);
+    background-size: var(--font-size);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMTczLjg5OCA0MzkuNDA0bC0xNjYuNC0xNjYuNGMtOS45OTctOS45OTctOS45OTctMjYuMjA2IDAtMzYuMjA0bDM2LjIwMy0zNi4yMDRjOS45OTctOS45OTggMjYuMjA3LTkuOTk4IDM2LjIwNCAwTDE5MiAzMTIuNjkgNDMyLjA5NSA3Mi41OTZjOS45OTctOS45OTcgMjYuMjA3LTkuOTk3IDM2LjIwNCAwbDM2LjIwMyAzNi4yMDRjOS45OTcgOS45OTcgOS45OTcgMjYuMjA2IDAgMzYuMjA0bC0yOTQuNCAyOTQuNDAxYy05Ljk5OCA5Ljk5Ny0yNi4yMDcgOS45OTctMzYuLjAwMSIvPjwvc3ZnPg==");
 }
 
 /*************************************/
