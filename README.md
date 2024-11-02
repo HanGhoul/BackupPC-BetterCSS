@@ -21,7 +21,6 @@ There are 2 potential problems you may encounter:
     Ensure the `style-src` part of the header allows `use.fontawesome.com`
 
 # Themes
-<style>th {display: none;}</style>
 |||
 |---|---|
 |<h2>90s</h2><p>Retro theme with SNES/Famicom colors.</p><p><sub>Added 2024</sub></p>|[<img src="assets/preview_90s.png" alt="Modern" width="480"/>](assets/preview_90s.png)|
