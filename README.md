@@ -1,13 +1,29 @@
-# BackupPC-BetterCSS
-A more modern CSS for BackupPC v3 and v4, heavily inspired by INSPINIA Bootstrap Theme. Works best with BackupPC set to English or German. If you use another language be sure to edit the `input[value=]` selectors to your language.
+Some themes for BackupPC v4 (and v3?).
 
 # How to use
-Place the CSS file in `/usr/share/backuppc/image/` and change the CSS path either in the config file itself (`/etc/backuppc/config.pl` -> `$Conf{CgiCSSFile}`) or in the BackupPC GUI (Edit Config -> CGI -> CgiCSSFile)
+1. Place the CSS files in `/usr/share/backuppc/image/`
+2. Update the CSS path
+    * in the GUI: *Edit Config* → *CGI* → *CgiCSSFile*
+    * or in the config file: `/etc/backuppc/config.pl` at `$Conf{CgiCSSFile}`
 
-If you don't see the FontAwesome menu icons you are probably using BackupPC in a different subfolder than the default "/backuppc/". In the CSS file replace all `/backuppc/index.cgi` with `/yoursubfolder/index.cgi` or just `/index.cgi` if you're not using a subfolder.
+# General troubleshooting
+## Menu icons not showing
+There are 2 potential problems you may encounter:
 
-If the host menu is out of place you can change the `margin-top` values in:
-* br + div[class="NavMenu"] {
-* div[class="NavMenu"] + div[class="NavMenu"] {
+1. Browsing the GUI with a different subfolder other than the default `/backuppc/`
+    #### Fix
+    In the CSS file replace all `/backuppc/index.cgi` with `/yoursubfolder/index.cgi` or just `/index.cgi` in case you use a top level domain.
 
-![Preview](preview.png "Preview")
+2. Your webserver has a strict `Content-Security-Policy` header set.
+
+    If this is the case you can see an error in your browser's dev tools console.
+    #### Fix
+    Ensure the `style-src` part of the header allows `use.fontawesome.com`
+
+# Themes
+<style>th {display: none;}</style>
+|||
+|---|---|
+|<h2>90s</h2><p>Retro theme with SNES/Famicom colors.</p><p><sub>Added 2024</sub></p>|[<img src="assets/preview_90s.png" alt="Modern" width="480"/>](assets/preview_90s.png)|
+|<h2>Modern</h2><p>Heavily inspired by INSPINIA Bootstrap Theme.</p><h3>Troubleshooting</h3><p>If the host menu is out of place, change the <tt>margin-top</tt> values in:</p><pre>br + div[class="NavMenu"] {}<br>div[class="NavMenu"] + div[class="NavMenu"] {}</pre><p><sub>Added 2017, updated 2023-04-14</sub></p>|[<img src="assets/preview_modern.png" alt="Modern" width="480"/>](assets/preview_modern.png)|
+|<h2>reset.css</h2><p>Resets CSS and some BackupPC quirks to start building your own theme on.</p><p>Clear <tt>$Conf{CgiCSSFile}</tt> before you start and use a userstyle editor like Stylish.</p><p><sub>Added 2024</sub></p>|[<img src="assets/preview_reset.png" alt="Modern" width="480"/>](assets/preview_reset.png)|

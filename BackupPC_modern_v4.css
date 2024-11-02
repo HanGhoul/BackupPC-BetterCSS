@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Asap+Condensed:400');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
-@import url('https://use.fontawesome.com/releases/v6.4.0/css/all.css');
+@import url('https://use.fontawesome.com/releases/v6.6.0/css/all.css');
 
 :root {
 	--clr-bg-body:#f3f3f4;
@@ -22,8 +22,6 @@
 	--clr-a:#337ab7;
 	--clr-a-nav:#a7b1c2;
 }
-
-
 
 /* If your vertical screen resolution is less than 1080px set this to 'absolute' to scroll the menu with the page */
 #navigation-container {

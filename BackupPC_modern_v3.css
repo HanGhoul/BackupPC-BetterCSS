@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Asap+Condensed:400');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
-@import url('https://use.fontawesome.com/releases/v5.0.13/css/all.css');
+@import url('https://use.fontawesome.com/releases/v6.6.0/css/all.css');
 
 :root {
 	--clr-bg-body:#f3f3f4;
@@ -343,7 +343,7 @@ div[class="NavMenu"] + div[class="NavMenu"] {
 .NavMenu a:before {
 	display: inline-block;
 	width:1em;
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	font-size:14px;
 	font-weight:900;
 	text-align:center;
