@@ -16,7 +16,12 @@
     --border-secondary-rise: rgba(255, 255, 255, 0.6);
     --border-secondary-sink: rgba(0, 0, 0, 0.3);
 
-    --logo-width: 160px; /* Original: 320px */
+    --image-filter: invert(.9);
+
+    --logo: url('https://raw.githubusercontent.com/HanGhoul/backuppc-themes/master/themes/90s/logo_90s_252x72.png');
+    --logo-width: 252px;
+    --logo-height: 72px;
+    --logo-scale: 1.5;
 
     --font-size: 12px; /* Used to calculate fake h1 line-height in 'Documentation' */
     --font-default: var(--font-size)/1.5 "Verdana Pro", "Verdana", sans-serif;
@@ -45,7 +50,7 @@
     --color-status-done: #007243; /* Y button */
     --color-status-failed: #C1121C; /* A button */
     --color-status-cancelled: #711521; /* Famicom red */
-    --color-status-disabled: #8C8F91; /* X button */
+    --color-status-disabled: #707372; /* Button zone */
     --color-status-noping: var(--color-status-failed);
 
     --form-checkbox-size: calc(var(--font-size) * 1.333);
@@ -74,7 +79,7 @@ body, table {
     padding: var(--body-padding);
 }
 img {
-    filter: invert(.9);
+    filter: var(--image-filter);
 }
 img[src*="cgi"] {
     padding: var(--body-padding-fraction-s) 0px;
@@ -143,6 +148,23 @@ h1 {
     border-color: var(--border-secondary-rise) var(--border-secondary-sink) var(--border-secondary-sink) var(--border-secondary-rise);
 }
 
+/* ====
+   Logo
+   ==== */
+#logo-container > a > img {
+    display: none;
+}
+#logo-container::after {
+    display: inline-block;
+    content: "";
+    width: calc(var(--logo-width) / var(--logo-scale));
+    height: calc(var(--logo-height) / var(--logo-scale));
+    background-image: var(--logo);
+    background-size: calc(var(--logo-width) / var(--logo-scale)) auto;
+    background-repeat: no-repeat;
+    filter: var(--image-filter);
+}
+
 /* ========
    Headings
    ======== */
@@ -180,6 +202,7 @@ h2.NavTitle {
 a:hover {
     text-decoration: none;
 }
+
 /* Primary */
 #Content a {
     color: var(--color-primary-link);
