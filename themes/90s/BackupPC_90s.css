@@ -18,10 +18,10 @@
 
     --image-filter: invert(.9);
 
-    --logo: url('https://raw.githubusercontent.com/HanGhoul/backuppc-themes/master/themes/90s/logo_90s_252x72.png');
-    --logo-width: 252px;
+    --logo: url('https://raw.githubusercontent.com/HanGhoul/backuppc-themes/master/themes/90s/logo_90s_190x72.png');
+    --logo-width: 190px;
     --logo-height: 72px;
-    --logo-scale: 1.5;
+    --logo-scale-divisor: 1.33;
 
     --font-size: 12px; /* Used to calculate fake h1 line-height in 'Documentation' */
     --font-default: var(--font-size)/1.5 "Verdana Pro", "Verdana", sans-serif;
@@ -157,10 +157,10 @@ h1 {
 #logo-container::after {
     display: inline-block;
     content: "";
-    width: calc(var(--logo-width) / var(--logo-scale));
-    height: calc(var(--logo-height) / var(--logo-scale));
+    width: calc(var(--logo-width) / var(--logo-scale-divisor));
+    height: calc(var(--logo-height) / var(--logo-scale-divisor));
     background-image: var(--logo);
-    background-size: calc(var(--logo-width) / var(--logo-scale)) auto;
+    background-size: calc(var(--logo-width) / var(--logo-scale-divisor)) auto;
     background-repeat: no-repeat;
     filter: var(--image-filter);
 }
