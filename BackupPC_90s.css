@@ -9,51 +9,57 @@
     --body-padding-fraction-l: calc(var(--body-padding) / 2);
     --body-padding-fraction-s: calc(var(--body-padding) / 5);
 
-    --width-logo: 160px; /* 50% of original */
-
-    --font-size: 12px; /* Used to calculate fake h1 line-height in 'Documentations' */
-    --font-default: var(--font-size)/1.5 "Verdana Pro", "Verdana", sans-serif;
-    --font-mono: 12px/1.2 "Consolas", monospace;
-
-    --color-heading-background: #9a97d0;
-    --color-heading-text: White;
-
-    --color-primary-background: #231e3c;
-    --color-primary-text: #b2b4b2;
-    --color-primary-link: #F7BA0B;
-    --color-secondary-background: #514689;
-    --color-secondary-text: White;
-    --color-secondary-link: White;
-
-    --color-table-head: var(--color-secondary-background);
-    --color-table-head-text: White;
-    --color-table-head-link: #F7BA0B;
-
-    --color-progress: #00387b;
-    --color-good: #007243;
-    --color-warn: #C1121C;
-
-    --color-border-table: var(--color-secondary-background);
-    
-    --border-width-table: 1px;
-    --border-width-ui: 1px;
+    --border-ui-width: 1px; /* Used to calculate padding & margin for headings */
+    --border-ui-style: solid;
     --border-primary-rise: rgba(255, 255, 255, 0.2);
     --border-primary-sink: rgba(0, 0, 0, 0.2);
     --border-secondary-rise: rgba(255, 255, 255, 0.6);
     --border-secondary-sink: rgba(0, 0, 0, 0.3);
 
+    --logo-width: 160px; /* Original: 320px */
+
+    --font-size: 12px; /* Used to calculate fake h1 line-height in 'Documentation' */
+    --font-default: var(--font-size)/1.5 "Verdana Pro", "Verdana", sans-serif;
+    --font-mono: 12px/1.4 "SF Mono", "Consolas", monospace;
+    --text-shadow: Black 1px 1px;
+
+    --color-highlight-text: White;
+    --color-heading-background: #9A97D0; /* US Y/X buttons */
+    --color-heading-text: var(--color-highlight-text);
+
+    --color-primary-background: #231E3C; /* US B/A buttons darker */
+    --color-primary-text: #B2B4B2; /* SNES body */
+    --color-primary-link: #FABA0B; /* B button */
+    --color-secondary-background: #514689; /* US B/A buttons */
+    --color-secondary-text: var(--color-highlight-text);
+    --color-secondary-link: var(--color-highlight-text);
+
+    --color-table-head-background: var(--color-secondary-background);
+    --color-table-head-text: var(--color-highlight-text);
+    --color-table-head-link: var(--color-primary-link);
+    --border-table-width: 1px;
+    --border-table-color: var(--color-secondary-background);
+    --border-table-style: solid;
+
+    --color-status-active: #00387B; /* X button */
+    --color-status-done: #007243; /* Y button */
+    --color-status-failed: #C1121C; /* A button */
+    --color-status-cancelled: #711521; /* Famicom red */
+    --color-status-disabled: #8C8F91; /* X button */
+    --color-status-noping: var(--color-status-failed);
+
     --form-checkbox-size: calc(var(--font-size) * 1.333);
 }
 
-/***********/
-/* General */
-/***********/
+/* =======
+   General
+   ======= */
 body {
     /* Uncomment next line for vertically stretched navigation */
     /* height: calc(100vh - var(--body-margin-v) * 2); */
     display: flex;
     margin: var(--body-margin);
-    text-shadow: black 1px 1px;
+    text-shadow: var(--text-shadow);
     background: var(--color-primary-background);
 }
 body, table {
@@ -73,72 +79,90 @@ img {
 img[src*="cgi"] {
     padding: var(--body-padding-fraction-s) 0px;
 }
+strong, dt {
+    color: var(--color-highlight-text);
+}
 code, pre, tt {
     font: var(--font-mono);
     color: var(--color-secondary-text);
 }
-pre {
-    padding: var(--body-padding-fraction-s) 0px;
-}
 tt {
     background: var(--color-secondary-background);
-    padding: 2px 4px;
+    padding: calc(var(--body-padding-fraction-s) / 2) var(--body-padding-fraction-s);
 }
-.editSaveButton {
+pre {
+    margin-top: var(--body-padding-fraction-s);
+    padding: 0px var(--body-padding-fraction-s);
+    background: var(--border-primary-sink);
+}
+pre:before, pre:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: var(--border-table-width);
+    background: var(--color-primary-link);
+    white-space: pre;
+}
+pre:before {
     margin-bottom: var(--body-padding-fraction-l);
 }
+pre:after {
+    margin-top: var(--body-padding-fraction-l);
+}
 
-/***********/
-/* Cleanup */
-/***********/
+/* =======
+   Cleanup
+   ======= */
 p, ul {
     margin-bottom: unset;
 }
-a:hover {
-    text-decoration: none;
-}
-h1 + br, /* Single br after h1 in '/backuppc/index.cgi?action=adminOpts' */
-hr {
+h1 + br, /* Single br after h1 in '/index.cgi?action=adminOpts' */
+hr,
+p:empty,
+pre:empty,
+span:empty {
     display: none;
 }
 
-/**************/
-/* UI borders */
-/**************/
+/* ==========
+   UI borders
+   ========== */
 #navigation-container {
-    border-style: solid;
-    border-width: var(--border-width-ui);
+    border-style: var(--border-ui-style);
+    border-width: var(--border-ui-width);
     border-color: var(--border-primary-rise) var(--border-primary-sink) var(--border-primary-sink) var(--border-primary-rise);
 }
 h1 {
-    border-style: solid;
-    border-width: var(--border-width-ui) var(--border-width-ui) var(--border-width-ui) 0px;
+    border-style: var(--border-ui-style);
+    border-width: var(--border-ui-width) var(--border-ui-width) var(--border-ui-width) 0px;
     border-color: var(--border-primary-rise) var(--border-primary-sink) var(--border-primary-sink) var(--border-primary-rise);
 }
 #Content h2 {
-    border-style: solid;
-    border-width: var(--border-width-ui);
+    border-style: var(--border-ui-style);
+    border-width: var(--border-ui-width);
     border-color: var(--border-secondary-rise) var(--border-secondary-sink) var(--border-secondary-sink) var(--border-secondary-rise);
 }
 
-/************/
-/* Headings */
-/************/
+/* ========
+   Headings
+   ======== */
 h1, h2 {
     font-size-adjust: 0.40; 
     color: var(--color-heading-text);
 }
+
 /* h1 */
 h1 {
     background: var(--color-secondary-background);
-    padding: 0px var(--body-padding-fraction-s) 0px calc(var(--body-padding) + var(--border-width-ui));
+    padding: 0px var(--body-padding-fraction-s) 0px calc(var(--body-padding) + var(--border-ui-width));
 }
 h1:first-child {
-    margin: calc(var(--body-padding) * -1) calc(var(--body-padding) * -1) var(--body-padding) calc((var(--body-padding) * -1) - var(--border-width-ui));
+    margin: calc(var(--body-padding) * -1) calc(var(--body-padding) * -1) var(--body-padding) calc((var(--body-padding) * -1) - var(--border-ui-width));
 }
 h1:not(:first-child) {
-    margin: var(--body-padding) calc(var(--body-padding) * -1) var(--body-padding) calc((var(--body-padding) * -1) - var(--border-width-ui));
+    margin: var(--body-padding) calc(var(--body-padding) * -1) var(--body-padding) calc((var(--body-padding) * -1) - var(--border-ui-width));
 }
+
 /* h2 */
 h2.NavTitle {
     padding-top: var(--body-padding-fraction-l);
@@ -150,9 +174,12 @@ h2.NavTitle {
     padding: 0px 0px 0px var(--body-padding-fraction-s);
 }
 
-/*********/
-/* Links */
-/*********/
+/* =======
+   Links
+   ======= */
+a:hover {
+    text-decoration: none;
+}
 /* Primary */
 #Content a {
     color: var(--color-primary-link);
@@ -160,6 +187,7 @@ h2.NavTitle {
 #Content a:hover {
     color: var(--color-primary-text);
 }
+
 /* Secondary */
 #navigation-container a {
     display: block;
@@ -170,6 +198,7 @@ h2.NavTitle {
 #navigation-container a:hover {
     color: var(--color-primary-link) !important;
 }
+
 /* Table head */
 tr.tableheader a {
     color: var(--color-table-head-link) !important;
@@ -178,9 +207,9 @@ tr.tableheader a:hover {
     color: var(--color-table-head-text) !important;
 }
 
-/**************/
-/* Navigation */
-/**************/
+/* ==========
+   Navigation
+   ========== */
 #NavMenu, .NavMenu {
     height: unset !important;
 }
@@ -189,45 +218,42 @@ tr.tableheader a:hover {
     height: 100%;
 }
 #logo-container img {
-    width: var(--width-logo);
+    width: var(--logo-width);
 }
 h2.NavTitle {
     color: var(--color-secondary-text);
 }
 
-/**************/
-/* Menu inset */
-/**************/
+/* ==========
+   Menu inset
+   ========== */
 .NavMenu a {
     padding: 0px var(--body-padding-fraction-s);
-    border-style: solid;
+    border-style: var(--border-ui-style);
     background-color: var(--border-primary-sink);
     border-color: var(--border-primary-sink) var(--border-primary-rise) var(--border-primary-rise) var(--border-primary-sink);
 }
 .NavMenu a:first-child, #NavMenu a:first-of-type {
     padding: var(--body-padding-fraction-s) var(--body-padding-fraction-l) 0px var(--body-padding-fraction-l);
-    border-width: var(--border-width-ui) var(--border-width-ui) 0px var(--border-width-ui);
+    border-width: var(--border-ui-width) var(--border-ui-width) 0px var(--border-ui-width);
 }
 .NavMenu a:not(:first-child):not(:last-child) {
     padding: 0px var(--body-padding-fraction-l) 0px var(--body-padding-fraction-l);
-    border-width: 0px var(--border-width-ui) 0px var(--border-width-ui);
+    border-width: 0px var(--border-ui-width) 0px var(--border-ui-width);
 }
 .NavMenu a:last-child {
     padding: 0px var(--body-padding-fraction-l) var(--body-padding-fraction-s) var(--body-padding-fraction-l);
-    border-width: 0px var(--border-width-ui) var(--border-width-ui) var(--border-width-ui);
-}
-.NavMenu select {
-    width: 100%;
+    border-width: 0px var(--border-ui-width) var(--border-ui-width) var(--border-ui-width);
 }
 
-/***********/
-/* Content */
-/***********/
+/* =======
+   Content
+   ======= */
 table {
     border: unset;
 }
 td {
-    border: var(--border-width-table) solid var(--color-border-table);
+    border: var(--border-table-width) var(--border-table-style) var(--border-table-color);
     padding: var(--body-padding-fraction-s);
 }
 table[bgcolor="#ffffff"], td[bgcolor="#ffffff"] {
@@ -235,20 +261,41 @@ table[bgcolor="#ffffff"], td[bgcolor="#ffffff"] {
 }
 
 tr.tableheader, td.editheader, tr.fviewheader {
-    background: var(--color-table-head);
+    background: var(--color-table-head-background);
     color: var(--color-table-head-text);
     font-weight: bold;
 }
 
-/* Table status colors */
-tr[bgcolor="#ccffcc"] {
-    background: var(--color-good);
+/* Backup status colors */
+tr[bgcolor="#66cc99"],
+tr[bgcolor="#ccffcc"],
+tr[bgcolor="#ffcccc"],
+tr[bgcolor="#ff9900"],
+tr[bgcolor="#d1d1d1"],
+tr[bgcolor="#ffff99"] {
+    color: var(--color-highlight-text);
+    background-image: repeating-linear-gradient(48.5deg,
+      hsla(0, 0%, 0%, 0.02),
+      hsla(0, 0%, 0%, 0.02) 16px,
+      transparent 0, transparent 30px) !important;
 }
-tr[bgcolor="#ff9900"] {
-    background: var(--color-warn);
+tr[bgcolor="#66cc99"] { /* Status: Active/In progress */
+    background: var(--color-status-active);
 }
-tr[bgcolor="#66cc99"] {
-    background: var(--color-progress);
+tr[bgcolor="#ccffcc"] { /* Status: Done */
+    background: var(--color-status-done);
+}
+tr[bgcolor="#ffcccc"] { /* Status: Failed */
+    background: var(--color-status-failed);
+}
+tr[bgcolor="#ff9900"] { /* Status: Cancelled by user */
+    background: var(--color-status-cancelled);
+}
+tr[bgcolor="#d1d1d1"] { /* Status: Disabled */
+    background: var(--color-status-disabled);
+}
+tr[bgcolor="#ffff99"] { /* Status: No ping */
+    background: var(--color-status-noping);
 }
 
 /* Content browser */
@@ -274,7 +321,7 @@ table.editSubTable td {
     border: unset;
 }
 table.editSubTable table {
-    border: var(--border-width-table) solid var(--color-border-table);
+    border: var(--border-table-width) var(--border-table-style) var(--border-table-color);
 }
 td.editTabSel  {
     background-color: var(--color-secondary-background);
@@ -282,18 +329,27 @@ td.editTabSel  {
 td.editTabSel a:hover, td.editTabNoSel a:hover {
     color: var(--color-heading-text) !important;
 }
+.editSaveButton {
+    margin-bottom: var(--body-padding-fraction-l);
+}
+span.editError {
+    border: var(--border-table-width) var(--border-table-style) var(--border-primary-rise);
+    padding: calc(var(--body-padding-fraction-s) / 2) var(--body-padding-fraction-s);
+    color: var(--color-highlight-text);
+    background: var(--color-status-failed);
+}
 
-/********/
-/* Form */
-/********/
+/* =============
+   Form elements
+   ============= */
 form {
     margin: var(--body-padding-fraction-s) 0px;
 }
 input, textarea, select {
     color: var(--color-secondary-text);
-    border-style: solid;
+    border-style: var(--border-ui-style);
     background-color: var(--border-primary-sink);
-    border-width: var(--border-width-ui);
+    border-width: var(--border-ui-width);
     border-color: var(--border-secondary-sink) var(--border-primary-rise) var(--border-primary-rise) var(--border-secondary-sink);
 }
 input, textarea {
@@ -301,15 +357,21 @@ input, textarea {
 select {
     padding: var(--body-padding-fraction-s);
 }
+
+/* Navigation: Host selection */
+.NavMenu select {
+    width: 100%;
+}
+
 /* Buttons */
 input[type="button"], input[type="submit"] {
-    color: var(--color-heading-text);
+    color: var(--color-highlight-text);
     background-color: var(--color-secondary-background);
-    border-width: var(--border-width-ui);
+    border-width: var(--border-ui-width);
     border-color: var(--border-primary-rise) var(--border-primary-sink) var(--border-primary-sink) var(--border-primary-rise);
 }
 input[type="button"]:hover, input[type="submit"]:hover {
-    color: var(--color-heading-text);
+    color: var(--color-highlight-text);
     background-color: var(--color-heading-background);
     border-color: var(--border-secondary-rise) var(--border-secondary-sink) var(--border-secondary-sink) var(--border-secondary-rise);
 }
@@ -318,13 +380,15 @@ input[type="button"]:active, input[type="submit"]:active {
     background-color: var(--color-secondary-background);
     border-color: var(--border-secondary-sink) var(--border-primary-rise) var(--border-primary-rise) var(--border-secondary-sink);
 }
-/* Active changes save button */
+
+/* Button: Unsaved changes */
 input[style="color: rgb(255, 0, 0);"] {
-    color: var(--color-heading-text) !important;
-    background-color: var(--color-warn);
-    border-width: var(--border-width-ui);
+    color: var(--color-highlight-text) !important;
+    background-color: var(--color-status-failed);
+    border-width: var(--border-ui-width);
     border-color: var(--border-secondary-rise) var(--border-secondary-sink) var(--border-secondary-sink) var(--border-secondary-rise);
 }
+
 /* Checkboxes */
 input[type="checkbox"] {
     -webkit-appearance: none;
@@ -339,10 +403,10 @@ input[type="checkbox"]:checked {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMTczLjg5OCA0MzkuNDA0bC0xNjYuNC0xNjYuNGMtOS45OTctOS45OTctOS45OTctMjYuMjA2IDAtMzYuMjA0bDM2LjIwMy0zNi4yMDRjOS45OTctOS45OTggMjYuMjA3LTkuOTk4IDM2LjIwNCAwTDE5MiAzMTIuNjkgNDMyLjA5NSA3Mi41OTZjOS45OTctOS45OTcgMjYuMjA3LTkuOTk3IDM2LjIwNCAwbDM2LjIwMyAzNi4yMDRjOS45OTcgOS45OTcgOS45OTcgMjYuMjA2IDAgMzYuMjA0bC0yOTQuNCAyOTQuNDAxYy05Ljk5OCA5Ljk5Ny0yNi4yMDcgOS45OTctMzYuLjAwMSIvPjwvc3ZnPg==");
 }
 
-/*************************************/
-/* Fix weird documentation header at */
-/* /backuppc/index.cgi?action=view&type=docs  */
-/*************************************/
+/* =================================
+   Fix weird documentation header at
+   /index.cgi?action=view&type=docs
+   ================================= */
 td._podblock_, table[border="0"][width="100%"][cellspacing="0"][cellpadding="3"] {
     background: var(--color-secondary-background) !important;
 }
@@ -351,23 +415,26 @@ td._podblock_ {
     text-indent: -0.4em;
     padding: 0px 0px 0px var(--body-padding);
     
-    border-style: solid;
-    border-width: var(--border-width-ui) var(--border-width-ui) var(--border-width-ui) 0px;
+    border-style: var(--border-ui-style);
+    border-width: var(--border-ui-width) var(--border-ui-width) var(--border-ui-width) 0px;
     border-color: var(--border-primary-rise) var(--border-primary-sink) var(--border-primary-sink) var(--border-primary-rise);
 }
 table[border="0"][width="100%"][cellspacing="0"][cellpadding="3"] {
     font-size-adjust: .65;
     line-height: calc(var(--font-size) * 3);
-    width: calc(100% + (var(--body-padding) * 2) + var(--border-width-ui));
+    width: calc(100% + (var(--body-padding) * 2) + var(--border-ui-width));
 
     margin-top:  calc(var(--body-padding) * -1);
-    margin-left: calc(var(--body-padding) * -1 - var(--border-width-ui));
+    margin-left: calc(var(--body-padding) * -1 - var(--border-ui-width));
     margin-bottom: var(--body-padding);
 }
+table[border="0"][width="100%"][cellspacing="0"][cellpadding="3"]:last-of-type {
+    display: none;
+}
 
-/**********************/
-/* Font Awesome Icons */
-/**********************/
+/* ==================
+   Font Awesome icons
+   ================== */
 .NavMenu a:before {
     display: inline-block;
     width: 1em;
@@ -378,72 +445,72 @@ table[border="0"][width="100%"][cellspacing="0"][cellpadding="3"] {
 }
 
 /* Computer */
-.NavMenu a[href^="/backuppc/index.cgi?host="]:before {
+.NavMenu a[href^="/index.cgi?host="]:before {
     content:"\f109";
 }
 
-.NavMenu a[href^="/backuppc/index.cgi?action=browse&host="]:before {
+.NavMenu a[href^="/index.cgi?action=browse&host="]:before {
     content:"\f0ca";
 }
 
-.NavMenu a[href^="/backuppc/index.cgi?action=view&type=LOG&host="]:before {
+.NavMenu a[href^="/index.cgi?action=view&type=LOG&host="]:before {
     content:"\f15c";
 }
 
-.NavMenu a[href^="/backuppc/index.cgi?action=LOGlist&host="]:before {
+.NavMenu a[href^="/index.cgi?action=LOGlist&host="]:before {
     content:"\f187";
 }
 
-.NavMenu a[href^="/backuppc/index.cgi?action=view&type=XferLOGbad&host="]:before {
+.NavMenu a[href^="/index.cgi?action=view&type=XferLOGbad&host="]:before {
     content:"\f06a";
 }
 
-.NavMenu a[href^="/backuppc/index.cgi?action=view&type=XferErrbad&host="]:before {
+.NavMenu a[href^="/index.cgi?action=view&type=XferErrbad&host="]:before {
     content:"\f12a";
 }
 
-.NavMenu a[href^="/backuppc/index.cgi?action=editConfig&host="]:before {
+.NavMenu a[href^="/index.cgi?action=editConfig&host="]:before {
     content:"\f1de";
 }
 
 /* Server */
-.NavMenu a[href="/backuppc/index.cgi?action=status"]:before {
+.NavMenu a[href="/index.cgi?action=status"]:before {
     content:"\f21e";
 }
 
-.NavMenu a[href="/backuppc/index.cgi?action=summary"]:before {
+.NavMenu a[href="/index.cgi?action=summary"]:before {
     content:"\f233";
 }
 
-.NavMenu a[href="/backuppc/index.cgi?action=editConfig"]:before {
+.NavMenu a[href="/index.cgi?action=editConfig"]:before {
     content:"\f1de";
 }
 
-.NavMenu a[href="/backuppc/index.cgi?action=editConfig&newMenu=hosts"]:before {
+.NavMenu a[href="/index.cgi?action=editConfig&newMenu=hosts"]:before {
     content:"\f0ad";
 }
 
-.NavMenu a[href="/backuppc/index.cgi?action=adminOpts"]:before {
+.NavMenu a[href="/index.cgi?action=adminOpts"]:before {
     content:"\f023";
 }
 
-.NavMenu a[href="/backuppc/index.cgi?action=view&type=LOG"]:before {
+.NavMenu a[href="/index.cgi?action=view&type=LOG"]:before {
     content:"\f15c";
 }
 
-.NavMenu a[href="/backuppc/index.cgi?action=LOGlist"]:before {
+.NavMenu a[href="/index.cgi?action=LOGlist"]:before {
     content:"\f187";
 }
 
-.NavMenu a[href="/backuppc/index.cgi?action=emailSummary"]:before {
+.NavMenu a[href="/index.cgi?action=emailSummary"]:before {
     content:"\f0e0";
 }
 
-.NavMenu a[href="/backuppc/index.cgi?action=queue"]:before {
+.NavMenu a[href="/index.cgi?action=queue"]:before {
     content:"\f021";
 }
 
-.NavMenu a[href="/backuppc/index.cgi?action=view&type=docs"]:before {
+.NavMenu a[href="/index.cgi?action=view&type=docs"]:before {
     content:"\f02d";
 }
 

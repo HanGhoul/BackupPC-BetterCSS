@@ -4,7 +4,28 @@ body {
     display: flex;
     height: 100vh;
 }
+code, pre, tt {
+    font-family: monospace;
+}
 
+/* Cleanup */
+h1 + br, /* Single br after h1 in /index.cgi?action=adminOpts */
+p:empty,
+pre:empty,
+span:empty {
+    display: none;
+}
+p, ul {
+    margin-bottom: unset;
+}
+table {
+    border: unset;
+}
+table[bgcolor="#ffffff"], td[bgcolor="#ffffff"] {
+    background: transparent;
+}
+
+/* Navigation */
 #NavMenu, .NavMenu {
     height: unset !important;
 }
@@ -18,23 +39,6 @@ body {
     flex-grow: 1;
 }
 
-h1 + br {
-    display: none; /* Single br after h1 in /index.cgi?action=adminOpts */
-}
-p, ul {
-    margin-bottom: unset;
-}
-code, pre, tt {
-    font-family: monospace;
-}
-
-table {
-    border: unset;
-}
-table[bgcolor="#ffffff"], td[bgcolor="#ffffff"] {
-    background: transparent;
-}
-
 /* Content browser */
 table[width="100%"] td[valign="top"],
 td[width="3%"],
@@ -44,4 +48,9 @@ td[width="30%"] td {
 }
 td[width="30%"] td {
     font-family: monospace;
+}
+
+/* Documentation */
+table[border="0"][width="100%"][cellspacing="0"][cellpadding="3"]:last-of-type {
+    display: none;
 }
